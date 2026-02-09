@@ -27,10 +27,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${product.brand} ${product.model} ${product.condition} | Worldwide Shipping | Marine Cartel`
 
-  const description = `
-Buy ${product.brand} ${product.model} (${product.condition}) at best price.
-Supplier of used, refurbished & surplus industrial automation parts.
-Worldwide shipping. Bulk dealer inquiries welcome.
+  const description = `Get the best deal on ${product.brand} ${product.model} (${product.condition}). 
+We supply genuine New, Used, Refubrished, Surplus industrial automation worldwide. 
+Fast shipping to PAN India, USA, Europe, UAE & Asia. 100% Tested. Request a quote now!
 `
 
   return {
@@ -77,6 +76,8 @@ export default async function ProductPage({ params }: Props) {
       name: product.brand,
     },
     sku: product.model,
+    mpn: product.model,
+    condition: product.condition,
     offers: {
       "@type": "Offer",
       url: `https://marinecartel.com/products/${product.slug}`,
@@ -108,3 +109,4 @@ export default async function ProductPage({ params }: Props) {
     </>
   )
 }
+

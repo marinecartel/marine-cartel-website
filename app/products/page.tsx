@@ -16,7 +16,10 @@ type Props = {
     brand?: string
     category?: string
     condition?: string
+    model_family?: string
+    category_main?: string
     search?: string
+    created_at: string
   }>
 }
 
@@ -30,10 +33,16 @@ export default async function ProductsPage({ searchParams }: Props) {
   const { data: brandsData } = await supabase.from("products").select("brand")
   const { data: categoryData } = await supabase.from("products").select("category")
   const { data: conditionData } = await supabase.from("products").select("condition")
+  const { data: modelFamilyData } = await supabase.from("products").select("model_family")
+  const { data: categoryMainData } = await supabase.from("products").select("category_main")
+
 
   const brands = [...new Set(brandsData?.map((b: any) => b.brand).filter(Boolean))]
   const categories = [...new Set(categoryData?.map((c: any) => c.category).filter(Boolean))]
   const conditions = [...new Set(conditionData?.map((c: any) => c.condition).filter(Boolean))]
+  const modelFamilies = [...new Set(modelFamilyData?.map((m: any) => m.model_family).filter(Boolean))]
+  const categoryMainList = [...new Set(categoryMainData?.map((c: any) => c.category_main).filter(Boolean))]
+
 
   /* ---------------- PRODUCT QUERY ---------------- */
 
@@ -51,6 +60,14 @@ export default async function ProductsPage({ searchParams }: Props) {
     query = query.ilike("condition", `%${params.condition.trim()}%`)
   }
 
+  if (params?.model_family?.trim()) {
+  query = query.ilike("model_family", `%${params.model_family.trim()}%`)
+  }
+
+  if (params?.category_main?.trim()) {
+  query = query.ilike("category_main", `%${params.category_main.trim()}%`)
+  }
+
   if (params?.search?.trim()) {
     const s = params.search.trim()
     query = query.or(
@@ -58,7 +75,7 @@ export default async function ProductsPage({ searchParams }: Props) {
     )
   }
 
-  const { data: products } = await query.order("id", { ascending: true })
+  const { data: products } = await query.order("created_at", { ascending: false })
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -66,7 +83,10 @@ export default async function ProductsPage({ searchParams }: Props) {
       <ProductsFilterClient
         brands={brands}
         categories={categories}
+      
+        model_family={modelFamilies}
         conditions={conditions}
+        category_main={categoryMainList}
         currentParams={params}
       />
 

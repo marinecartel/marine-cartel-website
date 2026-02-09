@@ -2,7 +2,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { supabase } from "@/lib/supabase"
 import { Cpu, Globe, Zap, PackageCheck, ShieldCheck, Users, Factory } from "lucide-react"
-
+import ProductsGrid from "@/components/ProductsGrid"
 export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
@@ -22,45 +22,24 @@ export default async function HomePage() {
   return (
     <div className="bg-white text-gray-900">
 
-      {/* ================= NAVBAR ================= */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-xl font-bold">
-            Marine <span className="text-green-600">Cartel</span>
-          </Link>
-
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-            <Link href="/" className="hover:text-green-600 transition">Home</Link>
-            <Link href="/products" className="hover:text-green-600 transition">Products</Link>
-            <Link href="/contact" className="hover:text-green-600 transition">Contact</Link>
-          </nav>
-
-          <Link
-            href="/products"
-            className="hidden md:inline-block px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-sm font-semibold"
-          >
-            Browse Products
-          </Link>
-        </div>
-      </header>
-
       {/* ================= HERO SECTION ================= */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+      {/* Updated to use your Dark Teal #0B2E2B and Primary Teal #0F766E */}
+      <section className="relative bg-gradient-to-br from-[#0B2E2B] via-[#0F766E] to-black text-white">
         <div className="max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-12 items-center">
 
           <div>
-            <span className="inline-block bg-green-600/20 text-green-400 px-4 py-1 rounded-full text-sm font-medium mb-6">
+            <span className="inline-block bg-black/40 text-[#14B8A6] px-4 py-1 rounded-full text-sm font-medium mb-6 border border-[#14B8A6]/30">
               Worldwide Industrial Automation Supplier
             </span>
 
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
               PLC, HMI, Drives & Automation Parts
-              <span className="block text-green-400 mt-2">
+              <span className="block text-[#14B8A6] mt-2">
                 In Stock. Ready to Ship.
               </span>
             </h1>
 
-            <p className="mt-6 text-lg text-gray-300 max-w-xl">
+            <p className="mt-6 text-lg text-teal-50/80 max-w-xl">
               Marine Cartel supplies Used, Refurbished & New industrial automation
               parts worldwide. Trusted by engineers & automation traders.
             </p>
@@ -68,7 +47,7 @@ export default async function HomePage() {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/products"
-                className="px-8 py-3 bg-green-600 hover:bg-green-700 rounded-xl font-semibold transition"
+                className="px-8 py-3 bg-[#14B8A6] hover:bg-[#0F766E] rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-teal-900/90"
               >
                 Browse Products
               </Link>
@@ -76,7 +55,7 @@ export default async function HomePage() {
               <a
                 href="https://wa.me/917405558403"
                 target="_blank"
-                className="px-8 py-3 bg-white text-black rounded-xl font-semibold hover:bg-gray-200 transition"
+                className="px-8 py-3 bg-white text-[#0B2E2B] rounded-xl font-semibold hover:bg-teal-50 transition-all duration-300"
               >
                 WhatsApp Us
               </a>
@@ -91,10 +70,10 @@ export default async function HomePage() {
               { icon: Zap, title: "24h", desc: "Fast Response" },
               { icon: Cpu, title: "Bulk", desc: "Special Pricing" },
             ].map((item, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
-                <item.icon className="text-green-400 mb-3" size={28} />
-                <h3 className="text-2xl font-bold text-green-400">{item.title}</h3>
-                <p className="text-gray-300 text-sm mt-2">{item.desc}</p>
+              <div key={i} className="bg-black/50 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-[#14B8A6]/50 transition-colors">
+                <item.icon className="text-[#14B8A6] mb-3" size={28} />
+                <h3 className="text-2xl font-bold text-[#14B8A6]">{item.title}</h3>
+                <p className="text-teal-50/60 text-sm mt-2">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -105,42 +84,122 @@ export default async function HomePage() {
       {/* ================= FEATURED PRODUCTS ================= */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-3xl font-bold">Featured Products</h2>
-          <Link href="/products" className="text-green-600 font-semibold hover:underline">
+          <h2 className="text-3xl font-bold text-[#0B2E2B]">Featured Products</h2>
+          <Link href="/products" className="text-[#0F766E] font-semibold hover:text-[#14B8A6] transition-colors">
             View All →
           </Link>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products?.map((p: any) => (
-            <Link
-              key={p.id}
-              href={`/products/${p.slug}`}
-              className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition border overflow-hidden"
-            >
-              <div className="h-48 bg-gray-100 flex items-center justify-center p-4">
-                <img
-                  src={p.images?.[0]}
-                  alt={p.name}
-                  className="max-h-full object-contain group-hover:scale-105 transition"
-                />
-              </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+          {products?.map((p: any) => {
+            const whatsappText = encodeURIComponent(
+              `Hello Marine Cartel,\n\nI am interested in:\n\nProduct: ${p.name}\nModel: ${p.model}\nCondition: ${p.condition}\n\nPlease share price & availability.`
+            )
 
-              <div className="p-5 space-y-2">
-                <div className="text-xs font-bold bg-green-100 text-green-700 px-3 py-1 rounded-full inline-block">
-                  {p.model}
+            const conditionStyles: Record<string, string> = {
+              New: "bg-[#0F766E] text-white shadow-teal-100",
+              Used: "bg-amber-500 text-white shadow-amber-100",
+              Refurbished: "bg-[#14B8A6] text-white shadow-teal-100",
+            }
+
+            return (
+              <div
+                key={p.id}
+                className="group flex flex-col bg-white rounded-[1.5rem] border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_50px_-12px_rgba(15,118,110,0.15)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
+              >
+                {/* Image Section */}
+                <div className="relative aspect-[4/3] m-2.5 overflow-hidden rounded-[0.5rem] bg-slate-50">
+                  <Link href={`/products/${p.slug}`} className="block w-full h-full">
+                    <img
+                      src={p.images?.[0] || "/placeholder.png"}
+                      alt={p.name}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    />
+                  </Link>
+
+                  {/* Condition Badge */}
+                  <div className="absolute top-1 left-1">
+                    <span className={`px-2.5 py-1 text-[8px] font-black uppercase tracking-wider rounded-full shadow-md ${conditionStyles[p.condition] || 'bg-slate-500 text-white'}`}>
+                      {p.condition}
+                    </span>
+                  </div>
+
+                  {/* Model Badge */}
+                  <div className="absolute bottom-1.5 left-3 right-3">
+                    <div className="bg-white/85 backdrop-blur-md px-3 py-2 rounded-lg border border-white/20 shadow-lg">
+                      <p className="text-[8px] font-bold text-slate-400 uppercase tracking-wider leading-none mb-0.5">
+                        Model No
+                      </p>
+                      <p className="text-xs font-black text-[#0B2E2B] truncate tracking-tight">
+                        {p.model}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-semibold line-clamp-2">{p.name}</h3>
-                <p className="text-sm text-gray-500">{p.brand}</p>
+
+                {/* Info Section */}
+                <div className="flex flex-col flex-grow px-5 pb-6 pt-1">
+                  <div className="flex items-center gap-1.5 mb-2.5">
+                    <span className="text-[9px] font-black text-[#0F766E] uppercase tracking-widest shrink-0">
+                      {p.brand}
+                    </span>
+                    <span className="w-0.5 h-0.5 rounded-full bg-slate-300 shrink-0"></span>
+                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider truncate">
+                      {p.model_family || "Series"}
+                    </span>
+                  </div>
+
+                  <Link href={`/products/${p.slug}`} className="block">
+                    <h3 className="text-[15px] font-bold text-slate-900 leading-[1.3] line-clamp-2 min-h-[2.5rem] group-hover:text-[#0F766E] transition-colors duration-300">
+                      {p.name}
+                    </h3>
+                  </Link>
+
+                  <div className="h-px w-full bg-slate-100/80 my-4"></div>
+
+                  <div className="mt-auto">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex flex-col">
+                        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">
+                          Price
+                        </span>
+
+                        {p.price_type === "fixed" && p.price ? (
+                          <div className="flex items-baseline gap-0.5">
+                            <span className="text-[10px] font-bold text-slate-900">$</span>
+                            <span className="text-xl font-black text-[#0B2E2B] tracking-tighter">
+                              {p.price.toLocaleString()}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="text-[9px] font-black text-[#0F766E] bg-teal-50 px-2 py-1 rounded-lg border border-teal-100 uppercase whitespace-nowrap">
+                            On Request
+                          </span>
+                        )}
+                      </div>
+
+                      <a
+                        href={`https://wa.me/917405558403?text=${whatsappText}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center w-12 h-12 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-2xl transition-all active:scale-90 shadow-[0_8px_20px_-4px_rgba(37,211,102,0.4)] hover:shadow-[0_12px_24px_-4px_rgba(37,211,102,0.5)] group-hover:rotate-6"
+                      >
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </Link>
-          ))}
+            )
+          })}
         </div>
       </section>
 
       {/* ================= PRODUCT CATEGORIES ================= */}
       <section className="max-w-7xl mx-auto px-6 py-20">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl font-bold text-center mb-12 text-[#0B2E2B]">
           Our Core Automation Categories
         </h2>
 
@@ -157,11 +216,11 @@ export default async function HomePage() {
           ].map((item, index) => (
             <div
               key={index}
-              className="group bg-gray-50 hover:bg-black hover:text-white transition rounded-2xl p-8 border shadow-sm hover:shadow-xl cursor-pointer"
+              className="group bg-slate-50 hover:bg-[#0B2E2B] hover:text-white transition-all duration-300 rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-xl cursor-pointer"
             >
-              <item.icon className="mb-4 text-green-600 group-hover:text-green-400" size={28} />
+              <item.icon className="mb-4 text-[#0F766E] group-hover:text-[#14B8A6]" size={28} />
               <h3 className="text-xl font-semibold mb-3">{item.name}</h3>
-              <p className="text-sm text-gray-500 group-hover:text-gray-300">
+              <p className="text-sm text-slate-500 group-hover:text-teal-50/60">
                 High demand automation products ready for dispatch.
               </p>
             </div>
@@ -170,40 +229,40 @@ export default async function HomePage() {
       </section>
 
       {/* ================= WHY CHOOSE US ================= */}
-      <section className="bg-gray-50 py-20">
+      <section className="bg-teal-50/30 py-20">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
 
           <div>
-            <h2 className="text-3xl font-bold mb-6">
+            <h2 className="text-3xl font-bold mb-6 text-[#0B2E2B]">
               Why Engineers Trust Marine Cartel
             </h2>
 
             <ul className="space-y-6">
               <li className="flex gap-3">
-                <ShieldCheck className="text-green-600 mt-1" size={22} />
+                <ShieldCheck className="text-[#0F766E] mt-1" size={22} />
                 <div>
-                  <h4 className="font-semibold text-lg">Tested & Verified Parts</h4>
-                  <p className="text-gray-600 text-sm">
+                  <h4 className="font-semibold text-lg text-[#0B2E2B]">Tested & Verified Parts</h4>
+                  <p className="text-slate-600 text-sm">
                     Each product checked before dispatch.
                   </p>
                 </div>
               </li>
 
               <li className="flex gap-3">
-                <PackageCheck className="text-green-600 mt-1" size={22} />
+                <PackageCheck className="text-[#0F766E] mt-1" size={22} />
                 <div>
-                  <h4 className="font-semibold text-lg">Used, Refurbished & New</h4>
-                  <p className="text-gray-600 text-sm">
+                  <h4 className="font-semibold text-lg text-[#0B2E2B]">Used, Refurbished & New</h4>
+                  <p className="text-slate-600 text-sm">
                     Flexible condition options to match budget.
                   </p>
                 </div>
               </li>
 
               <li className="flex gap-3">
-                <Zap className="text-green-600 mt-1" size={22} />
+                <Zap className="text-[#0F766E] mt-1" size={22} />
                 <div>
-                  <h4 className="font-semibold text-lg">Fast WhatsApp Support</h4>
-                  <p className="text-gray-600 text-sm">
+                  <h4 className="font-semibold text-lg text-[#0B2E2B]">Fast WhatsApp Support</h4>
+                  <p className="text-slate-600 text-sm">
                     Direct engineer-to-engineer communication.
                   </p>
                 </div>
@@ -211,15 +270,15 @@ export default async function HomePage() {
             </ul>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-xl p-10 border">
-            <h3 className="text-2xl font-bold mb-4">Who We Serve</h3>
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <span>System Integrators</span>
-              <span>PLC Panel Builders</span>
-              <span>Automation Traders</span>
-              <span>Maintenance Engineers</span>
-              <span>OEM Manufacturers</span>
-              <span>Export Buyers</span>
+          <div className="bg-white rounded-3xl shadow-xl p-10 border border-teal-100">
+            <h3 className="text-2xl font-bold mb-4 text-[#0B2E2B]">Who We Serve</h3>
+            <div className="grid grid-cols-2 gap-4 text-sm font-medium text-slate-600">
+              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> System Integrators</span>
+              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> PLC Panel Builders</span>
+              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> Automation Traders</span>
+              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> Maintenance Engineers</span>
+              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> OEM Manufacturers</span>
+              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> Export Buyers</span>
             </div>
           </div>
 
@@ -227,23 +286,26 @@ export default async function HomePage() {
       </section>
 
       {/* ================= CTA SECTION ================= */}
-      <section className="bg-black text-white py-20 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold">
+      <section className="bg-[#0B2E2B] text-white py-20 text-center relative overflow-hidden">
+        {/* Subtle decorative element */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#0F766E] opacity-20 blur-3xl -mr-32 -mt-32 rounded-full"></div>
+        
+        <h2 className="text-3xl md:text-4xl font-bold relative z-10">
           Looking for Specific PLC or Drive?
         </h2>
-        <p className="text-gray-400 mt-4">
+        <p className="text-teal-50/60 mt-4 relative z-10">
           Send model number on WhatsApp and get instant availability & best price.
         </p>
         <a
           href="https://wa.me/917405558403"
           target="_blank"
-          className="inline-block mt-8 px-10 py-4 bg-green-600 hover:bg-green-700 rounded-xl font-semibold transition"
+          className="inline-block mt-8 px-10 py-4 bg-[#14B8A6] hover:bg-[#0F766E] rounded-xl font-semibold transition-all duration-300 relative z-10 shadow-lg shadow-black/20"
         >
           Chat on WhatsApp
         </a>
       </section>
 
-<footer className="bg-gray-950 border-t border-gray-800 text-gray-400 py-14">
+      <footer className="bg-[#0B2E2B] border-t border-teal-900 text-teal-50/50 py-14">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
 
           <div>
@@ -259,17 +321,17 @@ export default async function HomePage() {
             <h4 className="text-white font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/products" className="hover:text-white transition">
+                <Link href="/products" className="hover:text-[#14B8A6] transition">
                   Products
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white transition">
+                <Link href="/about" className="hover:text-[#14B8A6] transition">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white transition">
+                <Link href="/contact" className="hover:text-[#14B8A6] transition">
                   Contact
                 </Link>
               </li>
@@ -284,7 +346,7 @@ export default async function HomePage() {
               <a 
                 href="https://wa.me/917405558403" 
                 target="_blank"
-                className="hover:text-white ml-1 transition"
+                className="hover:text-[#14B8A6] ml-1 transition"
               >
                 +91 74055 58403
               </a>
@@ -293,7 +355,7 @@ export default async function HomePage() {
 
         </div>
 
-        <div className="text-center text-xs text-gray-500 mt-10">
+        <div className="text-center text-xs text-teal-900/60 mt-10">
           © {new Date().getFullYear()} Marine Cartel. All rights reserved.
         </div>
       </footer>

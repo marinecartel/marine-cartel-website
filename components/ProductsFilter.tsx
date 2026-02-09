@@ -7,132 +7,200 @@ type FilterProps = {
   brands: string[]
   categories: string[]
   conditions: string[]
+  model_family: string[]
+  category_main: string[]
   currentParams: {
     brand?: string
     category?: string
     condition?: string
+    model_family?: string
+    category_main?: string
     search?: string
   }
-  onSearchChange?: (value: string) => void
-  onFilterChange?: (filters: { brand: string; category: string; condition: string }) => void
 }
 
-
 export default function ProductsFilterClient({
-  brands,
-  categories,
-  conditions,
+  brands = [],
+  categories = [],
+  conditions = [],
+  model_family = [],
+  category_main = [],
   currentParams,
-  onSearchChange,
-  onFilterChange,
-
 }: FilterProps) {
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onSearchChange) onSearchChange(e.target.value)
-  }
-
-  // filters select
-  const handleFilter = (key: string, value: string) => {
-    if (!onFilterChange) return
-    const newFilters = { 
-      brand: currentParams.brand || "",
-      category: currentParams.category || "",
-      condition: currentParams.condition || "",
-      [key]: value
-    }
-    onFilterChange(newFilters)
-  }
   const router = useRouter()
   const searchParams = useSearchParams()
+
   const [filtersOpen, setFiltersOpen] = useState(false)
+  const [search, setSearch] = useState(currentParams.search || "")
 
-  const [searchText, setSearchText] = useState(currentParams.search || "")
-  const [brand, setBrand] = useState(currentParams.brand || "")
-  const [category, setCategory] = useState(currentParams.category || "")
-  const [condition, setCondition] = useState(currentParams.condition || "")
-
-  // Debounce search typing
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      updateFilter("search", searchText)
-    }, 300)
-    return () => clearTimeout(timer)
-  }, [searchText])
-
-  useEffect(() => {
-    updateFilter("brand", brand)
-  }, [brand])
-  useEffect(() => {
-    updateFilter("category", category)
-  }, [category])
-  useEffect(() => {
-    updateFilter("condition", condition)
-  }, [condition])
-
+  /* ---------------- UPDATE FILTER (UNCHANGED) ---------------- */
   const updateFilter = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString())
+
     if (value) params.set(key, value)
     else params.delete(key)
+
     router.push(`/products?${params.toString()}`)
   }
 
+  /* ---------------- DEBOUNCED SEARCH (UNCHANGED) ---------------- */
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const params = new URLSearchParams(searchParams.toString())
+
+      if (search) params.set("search", search)
+      else params.delete("search")
+
+      router.push(`/products?${params.toString()}`)
+    }, 400)
+
+    return () => clearTimeout(timer)
+  }, [search])
+
+  const activeFiltersCount = Object.entries(currentParams).filter(
+    ([key, value]) => key !== "search" && value
+  ).length
+
+  const clearFilters = () => {
+    router.push("/products")
+  }
+
   return (
-    <div className="sticky top-0 z-20 bg-gray-50 border-b shadow-sm px-4 py-2">
+    <div className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 shadow-sm transition-all duration-500">
+      <div className="max-w-7xl mx-auto px-4 py-4">
 
-      {/* SEARCH BAR */}
-      <input
-        type="text"
-        placeholder="Search by name, model, brand, title, description..."
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        className="w-full p-2 rounded-lg border mb-2 text-sm"
-      />
+        {/* ================= TOP STRIP ================= */}
+        <div className="flex items-center gap-3 mb-4">
 
-      {/* COLLAPSE TOGGLE */}
-      <div className="flex justify-between items-center mb-1">
-        <span className="text-sm font-semibold text-gray-700">Filters</span>
-        <button
-          onClick={() => setFiltersOpen(!filtersOpen)}
-          className="text-gray-500 text-lg transform transition-transform"
+          {/* SEARCH - Updated Focus to Teal */}
+          <div className="relative flex-1">
+            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+
+            <input
+              type="text"
+              placeholder="Search assets, brand, model..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 bg-slate-100/60 hover:bg-slate-100 focus:bg-white border border-transparent focus:border-teal-400 rounded-2xl text-sm font-medium outline-none ring-4 ring-transparent focus:ring-teal-50 transition-all shadow-inner"
+            />
+          </div>
+
+          {/* FILTER BUTTON - Updated to Deep Teal */}
+          <button
+            onClick={() => setFiltersOpen(!filtersOpen)}
+            className={`flex items-center gap-2 px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${
+              filtersOpen || activeFiltersCount > 0
+                ? "bg-[#0F766E] text-white shadow-lg shadow-teal-100"
+                : "bg-white border border-slate-200 text-slate-600 hover:border-teal-200 shadow-sm"
+            }`}
+          >
+            Filter {activeFiltersCount > 0 ? `(${activeFiltersCount})` : ""}
+          </button>
+
+          {/* RESET */}
+          {activeFiltersCount > 0 && (
+            <button
+              onClick={clearFilters}
+              className="text-[10px] font-bold text-slate-400 hover:text-rose-500 uppercase tracking-wider transition-colors"
+            >
+              Reset
+            </button>
+          )}
+
+        </div>
+
+        {/* ================= COLLAPSIBLE FILTER GRID ================= */}
+        <div
+          className={`overflow-hidden transition-all duration-500 ${
+            filtersOpen ? "max-h-[600px] opacity-100 mt-4" : "max-h-0 opacity-0"
+          }`}
         >
-          {filtersOpen ? "▲" : "▼"}
-        </button>
+          <div className="bg-teal-50/30 rounded-[2rem] p-6 border border-teal-100/50 shadow-inner grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+
+            <FilterSelect
+              label="Brand"
+              value={currentParams.brand}
+              options={brands}
+              onChange={(v) => updateFilter("brand", v)}
+            />
+
+            <FilterSelect
+              label="Category"
+              value={currentParams.category}
+              options={categories}
+              onChange={(v) => updateFilter("category", v)}
+            />
+
+            <FilterSelect
+              label="Model Family"
+              value={currentParams.model_family}
+              options={model_family}
+              onChange={(v) => updateFilter("model_family", v)}
+            />
+
+            <FilterSelect
+              label="Condition"
+              value={currentParams.condition}
+              options={conditions}
+              onChange={(v) => updateFilter("condition", v)}
+            />
+
+            <FilterSelect
+              label="Main Category"
+              value={currentParams.category_main}
+              options={category_main}
+              onChange={(v) => updateFilter("category_main", v)}
+            />
+
+          </div>
+        </div>
+
       </div>
+    </div>
+  )
+}
 
-      {/* COLLAPSIBLE FILTERS */}
-      <div className={`overflow-hidden transition-all duration-300 ${filtersOpen ? "max-h-60" : "max-h-0"}`}>
-        <div className="grid grid-cols-3 gap-2 mb-2 text-sm">
+/* ================= REUSABLE SELECT - Updated with Teal Accents ================= */
 
-          {/* Brand */}
-          <select
-            value={brand}
-            onChange={(e) => setBrand(e.target.value)}
-            className="border p-2 rounded w-full"
-          >
-            <option value="">All Brands</option>
-            {brands.map((b) => <option key={b} value={b}>{b}</option>)}
-          </select>
+function FilterSelect({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string
+  value?: string
+  options: string[]
+  onChange: (v: string) => void
+}) {
+  return (
+    <div className="space-y-2">
+      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] ml-2">
+        {label}
+      </label>
 
-          {/* Category */}
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="border p-2 rounded w-full"
-          >
-            <option value="">All Categories</option>
-            {categories.map((c) => <option key={c} value={c}>{c}</option>)}
-          </select>
+      <div className="relative group">
+        <select
+          value={value || ""}
+          onChange={(e) => onChange(e.target.value)}
+          className="appearance-none w-full bg-white border border-slate-200 text-slate-700 py-3.5 pl-5 pr-10 rounded-2xl text-xs font-bold cursor-pointer transition-all hover:border-teal-400 focus:ring-4 focus:ring-teal-50 outline-none shadow-sm"
+        >
+          <option value="">All {label}s</option>
+          {options?.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
 
-          {/* Condition */}
-          <select
-            value={condition}
-            onChange={(e) => setCondition(e.target.value)}
-            className="border p-2 rounded w-full"
-          >
-            <option value="">All Conditions</option>
-            {conditions.map((c) => <option key={c} value={c}>{c}</option>)}
-          </select>
+        <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-400 group-hover:text-[#0F766E] transition-colors">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
+          </svg>
         </div>
       </div>
     </div>
