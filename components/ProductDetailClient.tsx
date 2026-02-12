@@ -108,15 +108,15 @@ const whatsappUrl = `https://wa.me/917405558403?text=${encodeURIComponent(whatsa
               onWheel={handleWheel}
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
-              className="relative bg-white rounded-[2.5rem] border border-slate-200/60 shadow-sm overflow-hidden flex items-center justify-center aspect-square md:aspect-[4/3] lg:aspect-[4/3] xl:aspect-[16/11]"
+              className="relative bg-white rounded-[1.5rem] border border-slate-200/60 shadow-sm overflow-hidden flex items-center justify-center aspect-square md:aspect-[4/3] lg:aspect-[4/3] xl:aspect-[16/11]"
             >
               {selectedImage && (
-                <img src={selectedImage} alt={product.name} className="max-h-[85%] max-w-[85%] object-contain" />
+                <img src={selectedImage} alt={product.name} className="w-full h-full object-cover" />
               )}
               
               <div className="absolute top-6 left-6 flex gap-2">
-                <span className="px-4 py-1.5 bg-[#0F766E] text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg shadow-teal-100">Verified Asset</span>
-                <span className="px-4 py-1.5 bg-white border border-slate-100 text-slate-900 text-[9px] font-black uppercase tracking-widest rounded-full shadow-sm">Original</span>
+                <span className="px-4 py-1.5 bg-[#0F766E] text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg shadow-teal-100">{product.model}</span>
+                <span className="px-4 py-1.5 bg-white border border-slate-100 text-slate-900 text-[9px] font-black uppercase tracking-widest rounded-full shadow-sm">{product.condition}</span>
               </div>
 
               {images.length > 1 && (
