@@ -1,3 +1,7 @@
+"use client"
+
+import { useSearchParams } from "next/navigation"
+import { supabase } from "@/lib/supabase";
 import Link from "next/link"
 
 const WhatsAppIcon = () => (
@@ -22,10 +26,23 @@ type Product = {
 
 type Props = {
   products: Product[]
+  totalCount: number
+  currentPage: number
+  totalPages: number
 }
 
-export default function ProductsGrid({ products }: Props) {
-  const displayProducts = products && products.length > 0 ? products : [];
+export default function ProductsGrid({
+  products,
+  totalCount,
+  currentPage,
+  totalPages,
+}: Props) {
+
+  const searchParams = useSearchParams()
+  const displayProducts = products && products.length > 0 ? products : []
+const currentQuery = Object.fromEntries(searchParams.entries())
+
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 bg-teal-50/10">
@@ -33,7 +50,7 @@ export default function ProductsGrid({ products }: Props) {
       <div className="mb-10 flex items-center gap-3">
         <span className="h-px flex-grow bg-slate-200"></span>
         <span className="text-[11px] font-black text-[#0F766E] uppercase tracking-[0.2em] whitespace-nowrap bg-white px-4 py-1 rounded-full border border-teal-100 shadow-sm">
-          Showing {displayProducts.length} Products
+          Showing {totalCount} Products
         </span>
         <span className="h-px flex-grow bg-slate-200"></span>
       </div>
@@ -137,6 +154,72 @@ export default function ProductsGrid({ products }: Props) {
           );
         })}
       </div>
+      {/* ✅ PAGINATION (NEW – DESIGN SAFE) */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center gap-3 mt-16 flex-wrap">
+
+          {currentPage > 1 && (
+            <Link
+              href={{
+  pathname: "/products",
+  query: {
+    ...currentQuery,
+    page: (currentPage - 1).toString(),
+  },
+}}
+
+              className="px-5 py-2 rounded-full border border-teal-200 bg-white text-[#0F766E] font-semibold hover:bg-teal-50 transition"
+            >
+              Previous
+            </Link>
+          )}
+
+          {Array.from({ length: totalPages }, (_, i) => i + 1)
+            .slice(
+              Math.max(currentPage - 2, 0),
+              Math.min(currentPage + 1, totalPages)
+            )
+            .map((page) => (
+              <Link
+                key={page}
+                href={{
+  pathname: "/products",
+  query: {
+    ...currentQuery,
+    page: page.toString(),
+  },
+}}
+
+                className={`px-4 py-2 rounded-full font-bold transition ${
+                  page === currentPage
+                    ? "bg-[#0F766E] text-white shadow-lg"
+                    : "bg-white border border-slate-200 text-slate-700 hover:bg-teal-50"
+                }`}
+              >
+                {page}
+              </Link>
+            ))}
+
+          {currentPage < totalPages && (
+            <Link
+              href={{
+  pathname: "/products",
+  query: {
+    ...currentQuery,
+    page: (currentPage + 1).toString(),
+  },
+}}
+
+              className="px-5 py-2 rounded-full border border-teal-200 bg-white text-[#0F766E] font-semibold hover:bg-teal-50 transition"
+            >
+              Next
+            </Link>
+          )}
+
+        </div>
+      )}
+
+    
     </div>
   );
 }

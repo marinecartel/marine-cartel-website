@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { supabase } from "@/lib/supabase"
 import ProductsFilterClient from "@/components/ProductsFilter"
 import ProductsGrid from "@/components/ProductsGrid"
+import { redirect } from "next/navigation"
 
 export const dynamic = "force-dynamic"
 
@@ -19,23 +20,39 @@ type Props = {
     model_family?: string
     category_main?: string
     search?: string
-    created_at: string
+    page?: string
   }>
 }
 
 export default async function ProductsPage({ searchParams }: Props) {
-
-  // ✅ VERY IMPORTANT (Next 16 requirement)
   const params = await searchParams
+
+  const page = parseInt(params?.page || "1")
+  const limit = 32
+  const from = (page - 1) * limit
+  const to = from + limit - 1
 
   /* ---------------- FILTER VALUES ---------------- */
 
-  const { data: brandsData } = await supabase.from("products").select("brand")
-  const { data: categoryData } = await supabase.from("products").select("category")
-  const { data: conditionData } = await supabase.from("products").select("condition")
-  const { data: modelFamilyData } = await supabase.from("products").select("model_family")
-  const { data: categoryMainData } = await supabase.from("products").select("category_main")
+  const { data: brandsData } = await supabase
+    .from("products")
+    .select("brand")
 
+  const { data: categoryData } = await supabase
+    .from("products")
+    .select("category")
+
+  const { data: conditionData } = await supabase
+    .from("products")
+    .select("condition")
+
+  const { data: modelFamilyData } = await supabase
+    .from("products")
+    .select("model_family")
+
+  const { data: categoryMainData } = await supabase
+    .from("products")
+    .select("category_main")
 
   const brands = [...new Set(brandsData?.map((b: any) => b.brand).filter(Boolean))]
   const categories = [...new Set(categoryData?.map((c: any) => c.category).filter(Boolean))]
@@ -43,10 +60,12 @@ export default async function ProductsPage({ searchParams }: Props) {
   const modelFamilies = [...new Set(modelFamilyData?.map((m: any) => m.model_family).filter(Boolean))]
   const categoryMainList = [...new Set(categoryMainData?.map((c: any) => c.category_main).filter(Boolean))]
 
-
   /* ---------------- PRODUCT QUERY ---------------- */
 
-  let query = supabase.from("products").select("*")
+  // VERY IMPORTANT: select FIRST
+  let query = supabase
+    .from("products")
+    .select("*", { count: "exact" })
 
   if (params?.brand?.trim()) {
     query = query.ilike("brand", `%${params.brand.trim()}%`)
@@ -61,11 +80,11 @@ export default async function ProductsPage({ searchParams }: Props) {
   }
 
   if (params?.model_family?.trim()) {
-  query = query.ilike("model_family", `%${params.model_family.trim()}%`)
+    query = query.ilike("model_family", `%${params.model_family.trim()}%`)
   }
 
   if (params?.category_main?.trim()) {
-  query = query.ilike("category_main", `%${params.category_main.trim()}%`)
+    query = query.ilike("category_main", `%${params.category_main.trim()}%`)
   }
 
   if (params?.search?.trim()) {
@@ -75,23 +94,41 @@ export default async function ProductsPage({ searchParams }: Props) {
     )
   }
 
-  const { data: products } = await query.order("created_at", { ascending: false })
+  const { data: products, count, error } = await query
+    .order("created_at", { ascending: false })
+    .range(from, to)
+
+  if (error) {
+    console.error(error)
+  }
+
+  const totalPages = Math.ceil((count || 0) / limit)
+  // ✅ PAGE SAFETY FIX
+if (page > totalPages && totalPages > 0) {
+  const newParams = new URLSearchParams(params as any)
+  newParams.set("page", "1")
+
+  redirect(`/products?${newParams.toString()}`)
+}
+
 
   return (
     <div className="min-h-screen bg-gray-50">
-
       <ProductsFilterClient
         brands={brands}
         categories={categories}
-      
         model_family={modelFamilies}
         conditions={conditions}
         category_main={categoryMainList}
         currentParams={params}
       />
 
-      <ProductsGrid products={products || []} />
-
+      <ProductsGrid
+        products={products || []}
+        totalCount={count || 0}
+        currentPage={page}
+        totalPages={totalPages}
+      />
     </div>
   )
 }
