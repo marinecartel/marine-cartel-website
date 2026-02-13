@@ -8,6 +8,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ? "https://marinecartel.store" 
     : "http://localhost:3000"
 
+    const languages = {
+    'en-US': '', // USA
+    'en-GB': '', // UK
+    'en-AE': '', // UAE
+    'en-DE': '', // Germany
+    'en-CA': '', // Canada
+    'en-AU': '', // Australia
+    'en-SG': '', // Singapore
+    'en-SA': '', // Saudi Arabia
+    'en-NL': '', // Netherlands
+    'en-FR': '', // France
+    'en-IT': '', // Italy
+    'en-JP': '', // Japan
+    'en-KR': '', // South Korea
+    'en-MX': '', // Mexico
+    'en-IN': '', // India
+    'x-default': '', // Global Default
+  }
+
+  // Helper function: Yeh function har URL ke liye hreflang links generate karega
+  const getAlternates = (path: string) => {
+    const fullUrl = `${baseUrl}${path}`;
+    const alternates: Record<string, string> = {};
+    Object.keys(languages).forEach((lang) => {
+      alternates[lang] = fullUrl;
+    });
+    return alternates;
+  };
+
+
   const { data: products, error } = await supabase
     .from("products")
     .select("slug")
@@ -23,6 +53,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
+      alternates: {
+        languages: getAlternates(`/products/${product.slug}`),
+      },
     })) || []
 
   return [
@@ -31,12 +64,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
+      alternates: {
+        languages: getAlternates(''),
+      },
     },
     {
       url: `${baseUrl}/products`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
+      alternates: {
+        languages: getAlternates('/products'),
+      },
     },
     ...productUrls,
   ]
