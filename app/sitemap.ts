@@ -2,7 +2,11 @@ import { supabase } from "@/lib/supabase"
 import type { MetadataRoute } from "next"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "http://localhost:3000"
+  // Yeh line check karegi: Agar site Vercel par hai toh asli domain use karegi, 
+  // nahi toh localhost use karegi (testing ke liye).
+  const baseUrl = process.env.NODE_ENV === 'production' 
+    ? "https://marinecartel.store" 
+    : "http://localhost:3000"
 
   const { data: products, error } = await supabase
     .from("products")
