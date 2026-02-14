@@ -27,7 +27,7 @@ export default function ReviewsGrid({ reviews, averageRating }: any) {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             
             <div>
-              <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-[100px] font-black uppercase tracking-widest mb-6">
+              <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-[20px] font-black uppercase tracking-widest mb-6">
                 <ShieldCheck size={20} /> 100% Authentic Feedback
               </div>
               <h1 className="text-5xl font-[900] tracking-tight text-slate-900 mb-6 leading-[1.1]">
