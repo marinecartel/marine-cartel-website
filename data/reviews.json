@@ -1,0 +1,644 @@
+[
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Fantastic experience working with this seller. Extremely gracious, professional and highly recommended."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Excellent communication and fast shipping. Product was packaged perfectly and exactly as described."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Italy",
+    "rating": 5,
+    "review": "Prodotto come da descrizione, venditore cordiale e disponibile nel risolvere qualsiasi problema. Ottimo."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Norway",
+    "rating": 5,
+    "review": "Good item, well wrapped. Fast shipping and proper paperwork for customs clearance."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "United Kingdom",
+    "rating": 5,
+    "review": "Very prompt service. Excellent transaction and highly recommended."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Germany",
+    "rating": 5,
+    "review": "Alles in Ordnung! Vielen Dank!"
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "France",
+    "rating": 5,
+    "review": "Parfait merci!"
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Australia",
+    "rating": 5,
+    "review": "Incredibly fast international postage and excellent pricing. Highly recommend this seller."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 4,
+    "review": "Item arrived in good condition and communication was excellent throughout."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Quick delivery, well packaged and exactly as described. Will buy again."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "UAE",
+    "rating": 5,
+    "review": "Great seller. Professional handling and quick resolution of any issue."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Spain",
+    "rating": 5,
+    "review": "Excelente producto, gracias!"
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Poland",
+    "rating": 4,
+    "review": "Device working well. Seller was communicative and handled compensation professionally."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Canada",
+    "rating": 5,
+    "review": "Great product, fast shipping and excellent packaging."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "United Kingdom",
+    "rating": 5,
+    "review": "Fast service and smooth transaction. Would order again."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Great customer service and very fast delivery. Highly recommended seller."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 4,
+    "review": "Minor issue initially but seller resolved quickly and professionally."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Netherlands",
+    "rating": 5,
+    "review": "Everything went great. Smooth transaction and reliable seller."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Sweden",
+    "rating": 5,
+    "review": "Excellent packaging and very secure shipment."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "A+ seller. Fast shipping and accurate description."
+  },
+
+  
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Outstanding transaction. Everything was handled professionally from start to finish."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Canada",
+    "rating": 5,
+    "review": "Very satisfied with the purchase. Secure packaging and quick international shipping."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Germany",
+    "rating": 5,
+    "review": "Super schneller Versand und sehr gute Kommunikation. Gerne wieder."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Italy",
+    "rating": 5,
+    "review": "Venditore serio e affidabile. Spedizione rapida e prodotto conforme alla descrizione."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "United Kingdom",
+    "rating": 5,
+    "review": "Great communication and excellent customer service. Highly recommend."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "France",
+    "rating": 5,
+    "review": "Transaction parfaite. Expédition rapide et produit impeccable."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Netherlands",
+    "rating": 5,
+    "review": "Professional seller with excellent follow-up and timely delivery."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Spain",
+    "rating": 5,
+    "review": "Producto excelente y envío muy rápido. Todo perfecto."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "UAE",
+    "rating": 5,
+    "review": "Very reliable supplier. Delivered as promised without delay."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Australia",
+    "rating": 5,
+    "review": "Fast shipping overseas and very well packaged. Impressed with service."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 4,
+    "review": "Small delay initially but seller communicated clearly and resolved quickly."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Sweden",
+    "rating": 5,
+    "review": "Secure international delivery and excellent product quality."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Poland",
+    "rating": 5,
+    "review": "Everything arrived safely and works perfectly. Thank you."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "A+ seller. Smooth transaction and fast processing."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Belgium",
+    "rating": 5,
+    "review": "Très bon vendeur, envoi rapide et conforme à la description."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Norway",
+    "rating": 5,
+    "review": "Fast response time and reliable documentation for customs."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Denmark",
+    "rating": 5,
+    "review": "Professional handling and very smooth process."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Highly recommended seller. Will definitely purchase again."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Switzerland",
+    "rating": 5,
+    "review": "Very efficient service and great communication throughout."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Item arrived earlier than expected and in perfect condition."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Austria",
+    "rating": 5,
+    "review": "Alles bestens. Gerne wieder!"
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Ireland",
+    "rating": 5,
+    "review": "Very pleased with the service and quick delivery."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 4,
+    "review": "Good overall experience. Seller stayed responsive and helpful."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Finland",
+    "rating": 5,
+    "review": "Reliable transaction and safe packaging."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Singapore",
+    "rating": 5,
+    "review": "Professional supplier with fast global shipping."
+  },
+
+  
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Excellent quality and very professional handling of international shipment."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Germany",
+    "rating": 5,
+    "review": "Sehr zufrieden mit dem Kauf. Schnelle Lieferung und gute Kommunikation."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "United Kingdom",
+    "rating": 5,
+    "review": "Top class service. Everything arrived securely packaged and on time."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Italy",
+    "rating": 5,
+    "review": "Servizio affidabile e consegna puntuale. Venditore consigliato."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Canada",
+    "rating": 5,
+    "review": "Very smooth transaction and quick overseas shipping."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "France",
+    "rating": 5,
+    "review": "Communication claire et expédition rapide. Très satisfait."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 4,
+    "review": "Minor delay due to customs but seller stayed responsive and helpful."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Australia",
+    "rating": 5,
+    "review": "Outstanding international supplier. Will order again."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "UAE",
+    "rating": 5,
+    "review": "Fast global shipping and very secure packaging."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Spain",
+    "rating": 5,
+    "review": "Producto conforme a la descripción y envío rápido."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Netherlands",
+    "rating": 5,
+    "review": "Professional communication and accurate documentation."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Sweden",
+    "rating": 5,
+    "review": "Reliable service and excellent support throughout the process."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Item exactly as described. Great experience overall."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Denmark",
+    "rating": 5,
+    "review": "Very professional supplier. Everything handled smoothly."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Belgium",
+    "rating": 5,
+    "review": "Très bon service et livraison rapide."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Switzerland",
+    "rating": 5,
+    "review": "Efficient handling and trustworthy seller."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Excellent communication and timely dispatch."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Austria",
+    "rating": 5,
+    "review": "Alles wie beschrieben. Sehr zufrieden."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Singapore",
+    "rating": 5,
+    "review": "Fast delivery and very professional packaging."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Norway",
+    "rating": 5,
+    "review": "Reliable supplier with smooth customs clearance support."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 4,
+    "review": "Good transaction. Slight delay but well communicated."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Finland",
+    "rating": 5,
+    "review": "Safe packaging and quick shipping. Highly satisfied."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Ireland",
+    "rating": 5,
+    "review": "Very smooth international order process."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Poland",
+    "rating": 5,
+    "review": "Everything arrived safely and in excellent condition."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "A dependable supplier for marine equipment."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Czech Republic",
+    "rating": 5,
+    "review": "Great service and accurate description."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Portugal",
+    "rating": 5,
+    "review": "Entrega rápida e produto excelente."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Very responsive and easy to work with."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Japan",
+    "rating": 5,
+    "review": "迅速な対応と丁寧な梱包で安心できました。"
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "South Korea",
+    "rating": 5,
+    "review": "빠른 배송과 정확한 제품 설명에 만족합니다."
+  },
+
+  
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Fantastic experience from inquiry to delivery. Highly professional service."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Germany",
+    "rating": 5,
+    "review": "Sehr professionelle Abwicklung und schneller internationaler Versand."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "United Kingdom",
+    "rating": 5,
+    "review": "Very reliable supplier with excellent communication."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Canada",
+    "rating": 5,
+    "review": "Securely packaged and delivered earlier than expected."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Italy",
+    "rating": 5,
+    "review": "Venditore serio e spedizione internazionale veloce."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "France",
+    "rating": 5,
+    "review": "Très satisfait du service et de la rapidité d’expédition."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 4,
+    "review": "Product arrived safely. Good communication throughout."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Spain",
+    "rating": 5,
+    "review": "Excelente vendedor con envío rápido y seguro."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Australia",
+    "rating": 5,
+    "review": "Outstanding global shipping experience."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "UAE",
+    "rating": 5,
+    "review": "Very trustworthy and responsive seller."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Netherlands",
+    "rating": 5,
+    "review": "Smooth transaction and clear documentation."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Sweden",
+    "rating": 5,
+    "review": "Professional service and timely international dispatch."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Belgium",
+    "rating": 5,
+    "review": "Très bon vendeur avec livraison rapide."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Switzerland",
+    "rating": 5,
+    "review": "Efficient handling and excellent packaging."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "A+ transaction. Everything handled perfectly."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Austria",
+    "rating": 5,
+    "review": "Alles perfekt gelaufen. Gerne wieder."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Singapore",
+    "rating": 5,
+    "review": "Very smooth international order process."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Norway",
+    "rating": 5,
+    "review": "Reliable shipping and excellent service quality."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Ireland",
+    "rating": 5,
+    "review": "Quick response time and safe delivery."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Finland",
+    "rating": 5,
+    "review": "Product as described and very well packaged."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Poland",
+    "rating": 5,
+    "review": "Everything arrived in perfect condition."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 5,
+    "review": "Consistent quality and dependable international seller."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Portugal",
+    "rating": 5,
+    "review": "Entrega rápida e excelente comunicação."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Czech Republic",
+    "rating": 5,
+    "review": "Professional handling and clear process."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Japan",
+    "rating": 5,
+    "review": "迅速で信頼できる対応でした。"
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "South Korea",
+    "rating": 5,
+    "review": "빠르고 안전한 배송에 매우 만족합니다."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "USA",
+    "rating": 4,
+    "review": "Good overall experience with minor shipping delay."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Denmark",
+    "rating": 5,
+    "review": "Excellent international supplier with great support."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Greece",
+    "rating": 5,
+    "review": "Very satisfied with service and global delivery speed."
+  },
+  {
+    "name": "Verified Buyer",
+    "country": "Malaysia",
+    "rating": 5,
+    "review": "Fast overseas shipping and reliable communication."
+  }
+]
+
+
+
+
+
+

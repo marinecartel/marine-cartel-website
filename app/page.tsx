@@ -335,6 +335,16 @@ export default async function HomePage() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link href="/shipping-return" className="hover:text-[#14B8A6] transition">
+                  Shipping & Return
+                </Link>
+              </li>
+              <li>
+                <Link href="/reviews" className="hover:text-[#14B8A6] transition">
+                  Reviews
+                </Link>
+              </li>
             </ul>
           </div>
 
