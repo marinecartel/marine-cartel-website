@@ -8,8 +8,7 @@ export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "Industrial Automation Products | Marine Cartel",
-  description:
-    "Buy used, refurbished & new PLC, HMI, Drives & industrial automation parts. Worldwide shipping.",
+  description: "Buy used, refurbished & new PLC, HMI, Drives & industrial automation parts. Worldwide shipping.",
 }
 
 type Props = {
@@ -24,6 +23,30 @@ type Props = {
   }>
 }
 
+// Helper function to fetch ALL unique values even if rows > 1000
+async function getAllUniqueValues(columnName: string) {
+  let allData: any[] = [];
+  let errorOccurred = false;
+  let rangeStart = 0;
+  const rangeStep = 1000;
+
+  // Yeh loop tab tak chalega jab tak humein saara data nahi mil jata
+  while (true) {
+    const { data, error } = await supabase
+      .from("products")
+      .select(columnName)
+      .range(rangeStart, rangeStart + rangeStep - 1);
+
+    if (error || !data || data.length === 0) break;
+
+    allData = [...allData, ...data];
+    if (data.length < rangeStep) break; // Iska matlab aur data nahi bacha
+    rangeStart += rangeStep;
+  }
+
+  return [...new Set(allData.map(item => item[columnName]).filter(Boolean))].sort();
+}
+
 export default async function ProductsPage({ searchParams }: Props) {
   const params = await searchParams
 
@@ -32,37 +55,19 @@ export default async function ProductsPage({ searchParams }: Props) {
   const from = (page - 1) * limit
   const to = from + limit - 1
 
-  /* ---------------- FILTER VALUES ---------------- */
+  /* ---------------- FILTER VALUES (RECURSIVE FETCH) ---------------- */
+  
+  // Ab hum guarantee ke saath saara data uthayenge chahe 10,000 rows hon
+  const [brands, categories, conditions, modelFamilies, categoryMainList] = await Promise.all([
+    getAllUniqueValues("brand"),
+    getAllUniqueValues("category"),
+    getAllUniqueValues("condition"),
+    getAllUniqueValues("model_family"),
+    getAllUniqueValues("category_main"),
+  ]);
 
-  const { data: brandsData } = await supabase
-    .from("products")
-    .select("brand")
+  /* ---------------- PRODUCT QUERY (UNCHANGED) ---------------- */
 
-  const { data: categoryData } = await supabase
-    .from("products")
-    .select("category")
-
-  const { data: conditionData } = await supabase
-    .from("products")
-    .select("condition")
-
-  const { data: modelFamilyData } = await supabase
-    .from("products")
-    .select("model_family")
-
-  const { data: categoryMainData } = await supabase
-    .from("products")
-    .select("category_main")
-
-  const brands = [...new Set(brandsData?.map((b: any) => b.brand).filter(Boolean))]
-  const categories = [...new Set(categoryData?.map((c: any) => c.category).filter(Boolean))]
-  const conditions = [...new Set(conditionData?.map((c: any) => c.condition).filter(Boolean))]
-  const modelFamilies = [...new Set(modelFamilyData?.map((m: any) => m.model_family).filter(Boolean))]
-  const categoryMainList = [...new Set(categoryMainData?.map((c: any) => c.category_main).filter(Boolean))]
-
-  /* ---------------- PRODUCT QUERY ---------------- */
-
-  // VERY IMPORTANT: select FIRST
   let query = supabase
     .from("products")
     .select("*", { count: "exact" })
@@ -89,28 +94,22 @@ export default async function ProductsPage({ searchParams }: Props) {
 
   if (params?.search?.trim()) {
     const s = params.search.trim()
-    query = query.or(
-      `model.ilike.%${s}%,name.ilike.%${s}%,description.ilike.%${s}%,brand.ilike.%${s}%`
-    )
+    query = query.or(`model.ilike.%${s}%,name.ilike.%${s}%,description.ilike.%${s}%,brand.ilike.%${s}%`)
   }
 
   const { data: products, count, error } = await query
     .order("created_at", { ascending: false })
     .range(from, to)
 
-  if (error) {
-    console.error(error)
-  }
+  if (error) console.error(error)
 
   const totalPages = Math.ceil((count || 0) / limit)
-  // ✅ PAGE SAFETY FIX
-if (page > totalPages && totalPages > 0) {
-  const newParams = new URLSearchParams(params as any)
-  newParams.set("page", "1")
 
-  redirect(`/products?${newParams.toString()}`)
-}
-
+  if (page > totalPages && totalPages > 0) {
+    const newParams = new URLSearchParams(params as any)
+    newParams.set("page", "1")
+    redirect(`/products?${newParams.toString()}`)
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
