@@ -94,7 +94,7 @@ export default async function ProductsPage({ searchParams }: Props) {
 
   if (params?.search?.trim()) {
     const s = params.search.trim()
-    query = query.or(`model.ilike.%${s}%,name.ilike.%${s}%,description.ilike.%${s}%,brand.ilike.%${s}%`)
+    query = query.or(`model.ilike.%${s}%,name.ilike.%${s}%,description.ilike.%${s}%,brand.ilike.%${s}%,technical_specs::text.ilike.%${s}%`)
   }
 
   const { data: products, count, error } = await query

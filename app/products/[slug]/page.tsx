@@ -97,6 +97,13 @@ export default async function ProductPage({ params }: Props) {
         name: "Marine Cartel",
       },
     },
+    "additionalProperty": product.technical_specs 
+      ? Object.entries(product.technical_specs).map(([key, value]) => ({
+          "@type": "PropertyValue",
+          "name": key,
+          "value": value
+        }))
+      : []
   }
 
   return (
