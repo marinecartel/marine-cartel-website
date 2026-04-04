@@ -12,15 +12,36 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* DARK MODE: Sirf tab apply hoga jab admin panel NA HO */
 @media (prefers-color-scheme: dark) {
-  :root {
+  /* :not([data-admin="true"]) logic se hum admin ko bacha sakte hain */
+  :root:not([data-admin="true"]) {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
 }
 
+/* GLOBAL BODY: Default styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🚀 ADMIN SPECIFIC OVERRIDES */
+/* Jab hum admin layout mein honge, ye styles globals ko override kar denge */
+[data-admin="true"] body {
+  background-color: #f8fafc !important; /* Clean Light Gray for Admin */
+  color: #1e293b !important;
+  font-family: var(--font-geist-sans), sans-serif !important;
+}
+
+/* Admin ke andar inputs aur tables hamesha light rahein */
+[data-admin="true"] input, 
+[data-admin="true"] select, 
+[data-admin="true"] textarea {
+  background-color: white !important;
+  color: black !important;
 }
