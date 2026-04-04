@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { createClient } from '@supabase/supabase-js'
 import { google } from 'googleapis'
 import { NextResponse } from 'next/server'
