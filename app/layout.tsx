@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "./globals. css";
 import Navbar from "@/components/Navbar";
 import { GoogleAnalytics } from '@next/third-parties/google';
 
@@ -18,7 +18,8 @@ export const metadata: Metadata = {
   title: "Marine Cartel | Industrial Automation Parts Supplier",
   description:
     "Marine Cartel supplies PLC, HMI, VFD, Servo Drives and industrial automation parts worldwide. New, used & refurbished stock available.",
-};
+
+  };
 
 export default function RootLayout({
   children,
