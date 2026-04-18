@@ -33,6 +33,7 @@ export default function BulkUpload() {
     // Data ko Supabase ke format mein saaf karna
     const formattedData = previewData.map(item => ({
       model: item.model || item.model_no || "",
+      model_family: item.model_family || "",
       brand: item.brand || "",
       category: item.category || "",
       category_main: item.category_main || "",

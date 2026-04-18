@@ -29,6 +29,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Inventory", href: "/products" },
+    { name: "Marine Spares", href: "/marine-spares" },
     { name: "Reviews", href:"/reviews"},
     { name: "Contact", href: "/contact" },
     { name: "About Us", href:"/about"}
@@ -65,7 +66,10 @@ export default function Navbar() {
               From Ocean to Outlets
             </span>
             <span className="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1 whitespace-nowrap overflow-hidden max-w-[140px] md:max-w-none">
-              Industrial Automation
+              Industrial Automation &
+            </span>
+            <span className="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1 whitespace-nowrap overflow-hidden max-w-[140px] md:max-w-none">
+              Marine Spares Supplier
             </span>
           </div>
         </Link>

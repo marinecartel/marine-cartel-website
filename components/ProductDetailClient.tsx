@@ -166,7 +166,7 @@ const whatsappUrl = `https://wa.me/917405558403?text=${encodeURIComponent(whatsa
                     {product.price_type === "fixed" && product.price ? (
                       <>
                         <span className="text-4xl font-black text-slate-900 tracking-tighter">${product.price.toLocaleString()}</span>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Negotiable</span>
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Or Your Best Price</span>
                       </>
                     ) : (
                       <span className="text-2xl font-black text-[#0F766E] tracking-tight">Price on Request</span>

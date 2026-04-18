@@ -1,14 +1,14 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { supabase } from "@/lib/supabase"
-import { Cpu, Globe, Zap, PackageCheck, ShieldCheck, Users, Factory } from "lucide-react"
+import { Cpu, Globe, Zap, PackageCheck, ShieldCheck, Users, Factory, Anchor, Ship, Droplets, Radio, Settings, LifeBuoy } from "lucide-react"
 import ProductsGrid from "@/components/ProductsGrid"
 export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
-  title: "Marine Cartel | Industrial Automation Parts Supplier Worldwide",
+  title: "Marine Cartel | Industrial Automation & Marine Spare Parts Supplier Worldwide",
   description:
-    "Buy Used, Refurbished & New PLC, HMI, Drives, Servo & Industrial Automation Parts. Worldwide shipping. Bulk deals available.",
+    "Buy Used, Refurbished & New PLC, HMI, Drives & Marine Spares Parts. Directly sourced from Alang & Factories. Worldwide shipping. Bulk deals available.",
 }
 
 export default async function HomePage() {
@@ -29,11 +29,11 @@ export default async function HomePage() {
 
           <div>
             <span className="inline-block bg-black/40 text-[#14B8A6] px-4 py-1 rounded-full text-sm font-medium mb-6 border border-[#14B8A6]/30">
-              Worldwide Industrial Automation Supplier
+              Worldwide Industrial Automation  & Marine Spares Supplier
             </span>
 
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              PLC, HMI, Drives & Automation Parts
+              Marine Spares Parts & PLC, HMI, Drives, All Industrial Automation Parts
               <span className="block text-[#14B8A6] mt-2">
                 In Stock. Ready to Ship.
               </span>
@@ -41,7 +41,7 @@ export default async function HomePage() {
 
             <p className="mt-6 text-lg text-teal-50/80 max-w-xl">
               Marine Cartel supplies Used, Refurbished & New industrial automation
-              parts worldwide. Trusted by engineers & automation traders.
+              & Marine Spare parts worldwide. Trusted by engineers & automation traders.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -228,82 +228,222 @@ export default async function HomePage() {
         </div>
       </section>
 
+       {/* ================= MARINE SPARE PARTS CATEGORIES ================= */}
+<section className="max-w-7xl mx-auto px-6 py-20 border-t border-slate-100">
+  <div className="text-center mb-16">
+    <h2 className="text-3xl font-bold text-[#0B2E2B] mb-4">
+      Marine Engineering & Spares
+    </h2>
+    <p className="text-slate-500 max-w-2xl mx-auto">
+      Genuine machinery spares sourced directly from Alang Ship Breaking Yard. Tested and ready for global vessel dispatch.
+    </p>
+  </div>
+
+  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    {[
+      { 
+        name: "Main Engine Spares", 
+        icon: Settings, 
+        desc: "Liner, Piston, Crankshaft, and Fuel Pumps for MAN, Wartsila, and Bergen." 
+      },
+      { 
+        name: "Hydraulic Systems", 
+        icon: Droplets, 
+        desc: "Hydraulic Pumps, Motors, and Control Valves for Deck Machinery." 
+      },
+      { 
+        name: "Bridge Automation", 
+        icon: Radio, 
+        desc: "Marine PCB Cards, Radar units, and Navigation Controller Spares." 
+      },
+      { 
+        name: "Auxiliary Machinery", 
+        icon: Ship, 
+        desc: "Air Compressors, Fresh Water Generators, and Purifier parts." 
+      },
+      { 
+        name: "Turbochargers", 
+        icon: Zap, 
+        desc: "Complete units and spares for ABB, Napier, and Mitsubishi." 
+      },
+      { 
+        name: "Governor & Controls", 
+        icon: Cpu, 
+        desc: "Woodward Governors and Electronic Control Units (ECU)." 
+      },
+      { 
+        name: "Deck Spares", 
+        icon: Anchor, 
+        desc: "Windlass spares, Crane motors, and Mooring winch components." 
+      },
+      { 
+        name: "Safety (LSA/FFA)", 
+        icon: LifeBuoy, 
+        desc: "Lifeboat engine spares, BA Sets, and Fire-fighting equipment." 
+      },
+    ].map((item, index) => (
+      <div
+        key={index}
+        className="group bg-[#0B2E2B]/5 hover:bg-[#0B2E2B] hover:text-white transition-all duration-300 rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-xl cursor-pointer"
+      >
+        <item.icon className="mb-4 text-[#0F766E] group-hover:text-[#14B8A6]" size={28} />
+        <h3 className="text-xl font-bold mb-3 uppercase italic tracking-tight">{item.name}</h3>
+        <p className="text-sm text-slate-500 group-hover:text-teal-50/60 leading-relaxed">
+          {item.desc}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>
+
       {/* ================= WHY CHOOSE US ================= */}
       <section className="bg-teal-50/30 py-20">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+  <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
 
+    {/* LEFT SIDE: WHY ENGINEERS TRUST */}
+    <div>
+      <h2 className="text-3xl font-bold mb-6 text-[#0B2E2B]">
+        Why Engineers Trust Marine Cartel
+      </h2>
+
+      <ul className="space-y-6">
+        <li className="flex gap-3">
+          <ShieldCheck className="text-[#0F766E] mt-1" size={22} />
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-[#0B2E2B]">
-              Why Engineers Trust Marine Cartel
-            </h2>
-
-            <ul className="space-y-6">
-              <li className="flex gap-3">
-                <ShieldCheck className="text-[#0F766E] mt-1" size={22} />
-                <div>
-                  <h4 className="font-semibold text-lg text-[#0B2E2B]">Tested & Verified Parts</h4>
-                  <p className="text-slate-600 text-sm">
-                    Each product checked before dispatch.
-                  </p>
-                </div>
-              </li>
-
-              <li className="flex gap-3">
-                <PackageCheck className="text-[#0F766E] mt-1" size={22} />
-                <div>
-                  <h4 className="font-semibold text-lg text-[#0B2E2B]">Used, Refurbished & New</h4>
-                  <p className="text-slate-600 text-sm">
-                    Flexible condition options to match budget.
-                  </p>
-                </div>
-              </li>
-
-              <li className="flex gap-3">
-                <Zap className="text-[#0F766E] mt-1" size={22} />
-                <div>
-                  <h4 className="font-semibold text-lg text-[#0B2E2B]">Fast WhatsApp Support</h4>
-                  <p className="text-slate-600 text-sm">
-                    Direct engineer-to-engineer communication.
-                  </p>
-                </div>
-              </li>
-            </ul>
+            <h4 className="font-semibold text-lg text-[#0B2E2B]">Tested & Verified Assets</h4>
+            <p className="text-slate-600 text-sm">
+              Each PLC module and Marine component is rigorously checked by our technical team before dispatch.
+            </p>
           </div>
+        </li>
 
-          <div className="bg-white rounded-3xl shadow-xl p-10 border border-teal-100">
-            <h3 className="text-2xl font-bold mb-4 text-[#0B2E2B]">Who We Serve</h3>
-            <div className="grid grid-cols-2 gap-4 text-sm font-medium text-slate-600">
-              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> System Integrators</span>
-              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> PLC Panel Builders</span>
-              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> Automation Traders</span>
-              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> Maintenance Engineers</span>
-              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> OEM Manufacturers</span>
-              <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> Export Buyers</span>
-            </div>
+        <li className="flex gap-3">
+          <Anchor className="text-[#0F766E] mt-1" size={22} />
+          <div>
+            <h4 className="font-semibold text-lg text-[#0B2E2B]">Direct Alang & Factories Sourcing</h4>
+            <p className="text-slate-600 text-sm">
+              Being at the heart of Alang, we provide genuine "Used Working" machinery spares directly from ship-breaking yards.
+            </p>
           </div>
+        </li>
 
+        <li className="flex gap-3">
+          <PackageCheck className="text-[#0F766E] mt-1" size={22} />
+          <div>
+            <h4 className="font-semibold text-lg text-[#0B2E2B]">Condition Flexibility</h4>
+            <p className="text-slate-600 text-sm">
+              Choose from New, Refurbished, or Used Working options to perfectly match your project budget.
+            </p>
+          </div>
+        </li>
+
+        <li className="flex gap-3">
+          <Globe className="text-[#0F766E] mt-1" size={22} />
+          <div>
+            <h4 className="font-semibold text-lg text-[#0B2E2B]">Global Logistics Expertise</h4>
+            <p className="text-slate-600 text-sm">
+              We handle customs and fast air-freight to deliver critical spares to any port or factory worldwide.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    {/* RIGHT SIDE: WHO WE SERVE */}
+    <div className="bg-white rounded-[2rem] shadow-xl p-10 border border-teal-100">
+      <h3 className="text-2xl font-bold mb-8 text-[#0B2E2B]">Who We Serve</h3>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Automation Side */}
+        <div className="space-y-4">
+          <h5 className="text-[10px] font-black text-[#14B8A6] uppercase tracking-widest border-b border-teal-50 pb-2">Automation Industry</h5>
+          <div className="space-y-2">
+            {[ 
+              "System Integrators", 
+              "PLC Panel Builders", 
+              "Automation Traders", 
+              "Maintenance Engineers",
+              "OEM Manufacturers"
+            ].map((t, i) => (
+              <span key={i} className="flex items-center gap-2 text-sm font-medium text-slate-600 uppercase tracking-tighter">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]"></div> {t}
+              </span>
+            ))}
+          </div>
         </div>
-      </section>
 
-      {/* ================= CTA SECTION ================= */}
-      <section className="bg-[#0B2E2B] text-white py-20 text-center relative overflow-hidden">
-        {/* Subtle decorative element */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#0F766E] opacity-20 blur-3xl -mr-32 -mt-32 rounded-full"></div>
-        
-        <h2 className="text-3xl md:text-4xl font-bold relative z-10">
-          Looking for Specific PLC or Drive?
-        </h2>
-        <p className="text-teal-50/60 mt-4 relative z-10">
-          Send model number on WhatsApp and get instant availability & best price.
-        </p>
-        <a
-          href="https://wa.me/917405558403"
-          target="_blank"
-          className="inline-block mt-8 px-10 py-4 bg-[#14B8A6] hover:bg-[#0F766E] rounded-xl font-semibold transition-all duration-300 relative z-10 shadow-lg shadow-black/20"
-        >
-          Chat on WhatsApp
-        </a>
-      </section>
+        {/* Marine Side */}
+        <div className="space-y-4">
+          <h5 className="text-[10px] font-black text-[#0B2E2B] uppercase tracking-widest border-b border-slate-50 pb-2">Marine Industry</h5>
+          <div className="space-y-2">
+            {[ 
+              "Ship Management Cos", 
+              "Technical Superintendents", 
+              "Vessel Owners", 
+              "Marine Workshops",
+              "Export Buyers"
+            ].map((t, i) => (
+              <span key={i} className="flex items-center gap-2 text-sm font-medium text-slate-600 uppercase tracking-tighter">
+                <div className="w-1.5 h-1.5 rounded-full bg-slate-400"></div> {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      <div className="mt-10 pt-6 border-t border-slate-50 italic text-[11px] text-slate-400 text-center">
+        "Reliable support for industrial automation and maritime operations."
+      </div>
+    </div>
+
+  </div>
+</section>
+
+      {/* ================= CTA SECTION (HYBRID FOCUS) ================= */}
+<section className="bg-[#0B2E2B] text-white py-24 text-center relative overflow-hidden">
+  {/* Decorative Elements */}
+  <div className="absolute top-0 right-0 w-80 h-80 bg-[#0F766E] opacity-20 blur-[100px] -mr-40 -mt-40 rounded-full"></div>
+  <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#14B8A6] opacity-10 blur-[100px] -ml-40 -mb-40 rounded-full"></div>
+  
+  <div className="max-w-4xl mx-auto px-6 relative z-10">
+    <h2 className="text-3xl md:text-5xl font-bold leading-tight uppercase italic tracking-tighter">
+      Critical Breakdown or <br /> 
+      <span className="text-[#14B8A6]">Urgent Requirement?</span>
+    </h2>
+    
+    <p className="text-teal-50/70 mt-6 text-lg max-w-2xl mx-auto font-medium">
+      Whether it's a specific PLC model for your factory or a critical Engine spare for your vessel, we provide instant availability and global technical support.
+    </p>
+
+    <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href="https://wa.me/917405558403"
+        target="_blank"
+        className="w-full sm:w-auto px-10 py-4 bg-[#14B8A6] hover:bg-[#0F766E] rounded-2xl font-bold transition-all duration-300 shadow-xl shadow-black/20 flex items-center justify-center gap-3"
+      >
+        <Zap size={20} fill="white" />
+        SEND MODEL NO / RFQ
+      </a>
+      
+      <Link
+        href="/contact"
+        className="w-full sm:w-auto px-10 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-2xl font-bold transition-all duration-300"
+      >
+        CONTACT SALES
+      </Link>
+    </div>
+
+    <div className="mt-8 flex items-center justify-center gap-6 opacity-50">
+      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+        <PackageCheck size={14} /> Global Shipping
+      </div>
+      <div className="w-1 h-1 bg-white rounded-full"></div>
+      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+        <ShieldCheck size={14} /> Verified Quality
+      </div>
+    </div>
+  </div>
+</section>
 
       <footer className="bg-[#0B2E2B] border-t border-teal-900 text-teal-50/50 py-14">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
@@ -313,7 +453,7 @@ export default async function HomePage() {
               Marine Cartel
             </h3>
             <p className="text-sm">
-              From Ocean to Outlets — Supplying industrial automation parts worldwide.
+              From Ocean to Outlets — Supplying industrial automation & Marine Spare parts worldwide.
             </p>
           </div>
 
@@ -349,19 +489,32 @@ export default async function HomePage() {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Contact</h4>
-            <p className="text-sm">Bhavnagar, Gujarat, India</p>
-            <p className="text-sm mt-2">
-              WhatsApp: 
-              <a 
-                href="https://wa.me/917405558403" 
-                target="_blank"
-                className="hover:text-[#14B8A6] ml-1 transition"
-              >
-                +91 74055 58403
-              </a>
-            </p>
-          </div>
+  <h4 className="text-white font-semibold mb-4">Contact</h4>
+  <p className="text-sm italic">504, Green, Prabhudas Talav, Bhavnagar, Gujarat, India</p>
+  
+  <p className="text-sm mt-3 flex flex-col gap-2">
+    <span>
+      WhatsApp: 
+      <a 
+        href="https://wa.me/917405558403" 
+        target="_blank"
+        className="hover:text-[#14B8A6] ml-1 transition"
+      >
+        +91 74055 58403
+      </a>
+    </span>
+    
+    <span>
+      Email: 
+      <a 
+        href="mailto:marinecartel.hq@gmail.com" 
+        className="hover:text-[#14B8A6] ml-1 transition"
+      >
+        marinecartel.hq@gmail.com
+      </a>
+    </span>
+  </p>
+</div>
 
         </div>
 

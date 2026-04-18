@@ -40,6 +40,28 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <span className="text-lg group-hover:scale-110 transition-transform">➕</span>
             Add Single Product
           </Link>
+
+          
+
+<div className="mt-8 mb-4 px-2">
+  <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.2em]">Marine Division</p>
+</div>
+
+<Link 
+  href="/admin/marine/console" 
+  className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition-all font-bold text-sm border-l-4 border-transparent hover:border-teal-500 group"
+>
+  <span className="text-lg group-hover:scale-110 transition-transform">⚓</span>
+  Marine Console
+</Link>
+
+<Link 
+  href="/admin/marine/list" 
+  className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition-all font-bold text-sm border-l-4 border-transparent hover:border-blue-400 group"
+>
+  <span className="text-lg group-hover:scale-110 transition-transform">📋</span>
+  Spare Inventory
+</Link>
         </nav>
 
         {/* Bottom Section */}

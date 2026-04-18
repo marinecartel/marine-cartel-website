@@ -15,11 +15,46 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Marine Cartel | Industrial Automation Parts Supplier",
+  metadataBase: new URL('https://marinecartel.store'),
+  // Global Title Strategy
+  title: {
+    default: "Marine Cartel | Global Industrial Automation & Marine Spares",
+    template: "%s | Marine Cartel" // Isse har product page ke title ke piche automatically "| Marine Cartel" lag jayega
+  },
   description:
-    "Marine Cartel supplies PLC, HMI, VFD, Servo Drives and industrial automation parts worldwide. New, used & refurbished stock available.",
+    "Marine Cartel is a leading supplier of PLC, HMI, VFD, and Marine Engine Spares worldwide. Sourced from Factories & Alang, Gujarat. Global shipping to US, Europe & Asia.",
+  
+  keywords: ["PLC Supplier India", "Marine Engine Spares Alang", "Industrial Automation Parts", "Used Ship Spares", "HMI VFD Exporter"],
 
-  };
+  // Global SEO Tags
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+
+  // Metadata for Social Media (OpenGraph)
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://marinecartel.store",
+    siteName: "Marine Cartel",
+    images: [
+      {
+        url: "/logo_mc.png", // Make sure to add this image in your public folder
+        width: 1200,
+        height: 630,
+        alt: "Marine Cartel Global Supply",
+      },
+    ],
+  },
+};
 
 export default function RootLayout({
   children,
@@ -31,10 +66,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900`}
       >
-        {/* Global Navbar */}
         <Navbar />
-
-        {/* Page Content */}
         <main>{children}</main>
         <GoogleAnalytics gaId="G-B20WZTC48X" />
       </body>
