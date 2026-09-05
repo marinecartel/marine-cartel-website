@@ -36,7 +36,7 @@ Fast shipping to PAN India, USA, Europe, UAE & Asia. 100% Tested. Request a quot
     title,
     description,
     alternates: {
-    canonical: `https://www.marinecartel.store/products/${product.slug}`,
+    canonical: `https://www.themarinecartel.com/products/${product.slug}`,
   },
     keywords: [
       `${product.brand} ${product.model}`,

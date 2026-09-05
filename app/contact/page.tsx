@@ -41,8 +41,7 @@ export default function ContactPage() {
             <div>
               <h3 className="font-bold text-[#0F766E]">Business Email</h3>
               <p>marinecartel9@gmail.com</p>
-              <p>mc@marinecarte.store</p>
-              <p>global@marinecarte.store</p>
+              
             </div>
 
             <div>

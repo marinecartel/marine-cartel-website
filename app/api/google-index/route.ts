@@ -36,8 +36,8 @@ export async function POST() {
 
     for (const product of products) {
       // Dono variants ke URLs banayein
-      const url1 = `https://marinecartel.store/products/${product.slug}`
-      const url2 = `https://www.marinecartel.store/products/${product.slug}`
+      const url1 = `https://themarinecartel.com/products/${product.slug}`
+      const url2 = `https://www.themarinecartel.com/products/${product.slug}`
       
       const targetUrls = [url1, url2]
 

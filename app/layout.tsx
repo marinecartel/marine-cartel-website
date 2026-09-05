@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://marinecartel.store'),
+  metadataBase: new URL('https://themarinecartel.com'),
   // Global Title Strategy
   title: {
     default: "Marine Cartel | Global Industrial Automation & Marine Spares",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://marinecartel.store",
+    url: "https://themarinecartel.com",
     siteName: "Marine Cartel",
     images: [
       {

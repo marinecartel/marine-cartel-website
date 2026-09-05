@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NODE_ENV === 'production' 
-    ? "https://marinecartel.store" 
+    ? "https://themarinecartel.com" 
     : "http://localhost:3000"
 
   /* ---------------- 1. FETCH ALL AUTOMATION PRODUCTS (Existing) ---------------- */
