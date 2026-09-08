@@ -1,11 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase"
 
-export default function OrderSuccessPage() {
+function OrderSuccessContent() {
   const searchParams = useSearchParams()
   const orderId = searchParams.get("orderId") || "MC-Pending"
   const part = searchParams.get("part") || "Item"
@@ -76,7 +76,7 @@ Please verify payment and process dispatch.`
             </div>
 
             <div className="bg-teal-50/70 border border-teal-200 p-3 rounded-xl text-slate-800 leading-relaxed">
-              <strong>Next Step:</strong> Our billing team will send the official invoice along with electronic bank wire / transfer instructions to your registered email (<span className="font-semibold text-slate-900">{email || "your email"}</span>) and WhatsApp within <strong>1–2 business hours</strong>.
+              <strong>Next Step:</strong> Our billing team will send the official invoice along with electronic bank wire / transfer instructions to your registered email (<span className="font-semibold text-slate-900">{email || "your email"}</span>) or WhatsApp within <strong>1–2 business hours</strong>.
             </div>
           </div>
         </div>
@@ -130,5 +130,13 @@ Please verify payment and process dispatch.`
 
       </div>
     </div>
+  )
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense fallback={<div className="p-16 text-center text-slate-400 text-sm">Loading order details...</div>}>
+      <OrderSuccessContent />
+    </Suspense>
   )
 }

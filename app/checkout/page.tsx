@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 
@@ -16,7 +16,7 @@ const COUNTRIES = [
   "Thailand", "Other (Worldwide)"
 ]
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -360,5 +360,13 @@ export default function CheckoutPage() {
 
       </div>
     </div>
+  )
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<div className="p-16 text-center text-slate-400 text-sm">Loading checkout...</div>}>
+      <CheckoutContent />
+    </Suspense>
   )
 }
