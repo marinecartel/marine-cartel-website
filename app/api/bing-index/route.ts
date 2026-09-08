@@ -20,7 +20,7 @@ export async function POST() {
       return NextResponse.json({ message: "No pending products for Bing", processed: 0 })
     }
 
-    const HOST = "www.themarinecartel.com";
+    const HOST = "themarinecartel.com";
     const BING_API_KEY = process.env.BING_INDEXNOW_KEY; // Vercel Env se lein
 
     // 2. URLs ki list taiyar karein

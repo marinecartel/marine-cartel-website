@@ -21,23 +21,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) {
     return {
-      title: "Product Not Found | Marine Cartel",
+      title: "Product Not Found",
     }
   }
 
-  const title = `${product.brand} ${product.model} ${product.condition} | Worldwide Shipping | Marine Cartel`
+  const title = `${product.brand} ${product.model} ${product.condition} | Worldwide Shipping | Best Price`
 
-  const description = `Get the best deal on ${product.brand} ${product.model} (${product.condition}). 
-We supply genuine New, Used, Refubrished, Surplus industrial automation worldwide. 
-Fast shipping to PAN India, USA, Europe, UAE & Asia. 100% Tested. Request a quote now!
-`
+  const description = `Get the best deal on ${product.brand} ${product.model} (${product.condition}). We supply genuine New, Used, Refurbished, Surplus industrial automation worldwide. Fast shipping to PAN India, USA, Europe, UAE & Asia. 100% Tested. Request a quote now!`
 
   return {
     title,
     description,
     alternates: {
-    canonical: `https://www.themarinecartel.com/products/${product.slug}`,
-  },
+      canonical: `https://themarinecartel.com/products/${product.slug}`,
+    },
     keywords: [
       `${product.brand} ${product.model}`,
       `Buy ${product.model} online`,
@@ -49,12 +46,11 @@ Fast shipping to PAN India, USA, Europe, UAE & Asia. 100% Tested. Request a quot
     openGraph: {
       title,
       description,
+      url: `https://themarinecartel.com/products/${product.slug}`,
       images: product.images?.length ? [product.images[0]] : [],
     },
-
   }
 }
-
 
 // ✅ PAGE COMPONENT
 export default async function ProductPage({ params }: Props) {
@@ -67,6 +63,21 @@ export default async function ProductPage({ params }: Props) {
     .single()
 
   if (!product) return notFound()
+
+  // ✅ All Condition Types Logic for Google Schema
+  const cond = product.condition?.toLowerCase() || ""
+  let itemCondition = "https://schema.org/UsedCondition"
+
+  if (cond.includes("new")) {
+    itemCondition = "https://schema.org/NewCondition"
+  } else if (cond.includes("refurbished")) {
+    itemCondition = "https://schema.org/RefurbishedCondition"
+  } else if (cond.includes("part")) {
+    itemCondition = "https://schema.org/DamagedCondition"
+  } else {
+    // Covers: Pre-owned, Used Working, Used Untested, etc.
+    itemCondition = "https://schema.org/UsedCondition"
+  }
 
   // ✅ JSON-LD Structured Data
   const structuredData = {
@@ -81,17 +92,13 @@ export default async function ProductPage({ params }: Props) {
     },
     sku: product.model,
     mpn: product.model,
-    condition: product.condition,
     offers: {
       "@type": "Offer",
-      url: `https://marinecartel.com/products/${product.slug}`,
+      url: `https://themarinecartel.com/products/${product.slug}`,
       priceCurrency: "USD",
       price: product.price,
       availability: "https://schema.org/InStock",
-      itemCondition:
-        product.condition === "Used"
-          ? "https://schema.org/UsedCondition"
-          : "https://schema.org/NewCondition",
+      itemCondition: itemCondition,
       seller: {
         "@type": "Organization",
         name: "Marine Cartel",
@@ -120,4 +127,3 @@ export default async function ProductPage({ params }: Props) {
     </>
   )
 }
-

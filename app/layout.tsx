@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--font-font-geist-sans",
   subsets: ["latin"],
 });
 
@@ -16,10 +16,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://themarinecartel.com'),
+  
+  // Canonical tag fix: Isse home page par <link rel="canonical" href="https://themarinecartel.com/" /> ban jayega
+  alternates: {
+    canonical: '/',
+  },
+
   // Global Title Strategy
   title: {
     default: "Marine Cartel | Global Industrial Automation & Marine Spares",
-    template: "%s | Marine Cartel" // Isse har product page ke title ke piche automatically "| Marine Cartel" lag jayega
+    template: "%s | Marine Cartel"
   },
   description:
     "Marine Cartel is a leading supplier of PLC, HMI, VFD, and Marine Engine Spares worldwide. Sourced from Factories & Alang, Gujarat. Global shipping to US, Europe & Asia.",
@@ -47,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "Marine Cartel",
     images: [
       {
-        url: "/logo_mc.png", // Make sure to add this image in your public folder
+        url: "/logo_mc.png",
         width: 1200,
         height: 630,
         alt: "Marine Cartel Global Supply",

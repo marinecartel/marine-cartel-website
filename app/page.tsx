@@ -445,83 +445,124 @@ export default async function HomePage() {
   </div>
 </section>
 
-      <footer className="bg-[#0B2E2B] border-t border-teal-900 text-teal-50/50 py-14">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+      <footer className="bg-[#0B2E2B] border-t border-teal-900 text-teal-50/70 py-14 font-sans">
+  <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-          <div>
-            <h3 className="text-white font-semibold text-lg mb-4">
-              Marine Cartel
-            </h3>
-            <p className="text-sm">
-              From Ocean to Outlets — Supplying industrial automation & Marine Spare parts worldwide.
-            </p>
-          </div>
+    {/* Col 1: About */}
+    <div>
+      <h3 className="text-white font-semibold text-lg mb-4">
+        Marine Cartel
+      </h3>
+      <p className="text-sm leading-relaxed text-teal-100/70">
+        From Ocean to Outlets — Supplying industrial automation & marine spare parts worldwide. 100% tested genuine equipment.
+      </p>
+    </div>
 
-          <div>
-            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/products" className="hover:text-[#14B8A6] transition">
-                  Products
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-[#14B8A6] transition">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-[#14B8A6] transition">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/shipping-return" className="hover:text-[#14B8A6] transition">
-                  Shipping & Return
-                </Link>
-              </li>
-              <li>
-                <Link href="/reviews" className="hover:text-[#14B8A6] transition">
-                  Reviews
-                </Link>
-              </li>
-            </ul>
-          </div>
+    {/* Col 2: Quick & Customer Links */}
+    <div>
+      <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
+      <ul className="space-y-2 text-sm">
+        <li>
+          <Link href="/products" className="hover:text-[#14B8A6] transition">
+            Products
+          </Link>
+        </li>
+        <li>
+          <Link href="/about" className="hover:text-[#14B8A6] transition">
+            About Us
+          </Link>
+        </li>
+        <li>
+          <Link href="/contact" className="hover:text-[#14B8A6] transition">
+            Contact
+          </Link>
+        </li>
+        <li>
+          <Link href="/reviews" className="hover:text-[#14B8A6] transition">
+            Reviews
+          </Link>
+        </li>
+        <li>
+          <Link href="/track-order" className="text-[#14B8A6] font-medium hover:underline transition">
+            Track Live Order →
+          </Link>
+        </li>
+      </ul>
+    </div>
 
-          <div>
-  <h4 className="text-white font-semibold mb-4">Contact</h4>
-  <p className="text-sm italic">504, Green, Prabhudas Talav, Bhavnagar, Gujarat, India</p>
+    {/* Col 3: Compliance & Legal Links */}
+    <div>
+      <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Policies</h4>
+      <ul className="space-y-2 text-sm">
+        <li>
+          <Link href="/shipping-return" className="hover:text-[#14B8A6] transition">
+            Shipping & Return Policy
+          </Link>
+        </li>
+        <li>
+          <Link href="/privacy-policy" className="hover:text-[#14B8A6] transition">
+            Privacy Policy
+          </Link>
+        </li>
+        <li>
+          <Link href="/terms-of-service" className="hover:text-[#14B8A6] transition">
+            Terms of Service
+          </Link>
+        </li>
+      </ul>
+    </div>
+
+    {/* Col 4: Contact & Verified Google Business Profile Map */}
+<div>
+  <h4 className="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Contact & Facility</h4>
+  <p className="text-xs text-teal-100/80 leading-snug">
+    Marine Cartel, 504, Green, Prabudas Talav, Krishna Nagar, Bhavnagar, Gujarat, India - 364005
+  </p>
   
-  <p className="text-sm mt-3 flex flex-col gap-2">
+  <p className="text-xs mt-2 flex flex-col gap-1.5">
     <span>
-      WhatsApp: 
+      WhatsApp:{" "}
       <a 
         href="https://wa.me/917405558403" 
         target="_blank"
-        className="hover:text-[#14B8A6] ml-1 transition"
+        rel="noopener noreferrer"
+        className="text-white hover:text-[#14B8A6] transition font-medium"
       >
         +91 74055 58403
       </a>
     </span>
     
     <span>
-      Email: 
+      Email:{" "}
       <a 
-        href="mailto:marinecartel.hq@gmail.com" 
-        className="hover:text-[#14B8A6] ml-1 transition"
+        href="mailto:themarinecartel@gmail.com" 
+        className="text-white hover:text-[#14B8A6] transition font-medium"
       >
-        marinecartel.hq@gmail.com
+        themarinecartel@gmail.com
       </a>
     </span>
   </p>
+
+  {/* Exact Marine Cartel Business Profile Map */}
+  <div className="mt-3 rounded-xl overflow-hidden border border-teal-900 shadow-inner">
+    <iframe
+      title="Marine Cartel Verified Business Location"
+      src="https://maps.google.com/maps?q=21.7783363,72.1595645&hl=en&z=15&output=embed"
+      width="100%"
+      height="120"
+      style={{ border: 0 }}
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
 </div>
 
-        </div>
+  </div>
 
-        <div className="text-center text-xs text-teal-900/60 mt-10">
-          © {new Date().getFullYear()} Marine Cartel. All rights reserved.
-        </div>
-      </footer>
+  <div className="text-center text-xs text-teal-200/50 mt-12 pt-6 border-t border-teal-900/60">
+    © {new Date().getFullYear()} Marine Cartel. All rights reserved. Registered in India.
+  </div>
+</footer>
 
     </div>
   )
