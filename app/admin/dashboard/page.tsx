@@ -93,14 +93,36 @@ export default function AdminDashboard() {
   }, [page, activeTab])
 
   const handleGoogleSync = async () => {
+  setSyncing(true)
+  try {
+    const res = await fetch('/api/google-index', { method: 'POST' })
+    const result = await res.json()
+    if (!res.ok || result.error) {
+      alert(`Sync Error: ${result.error || 'Failed to sync'}`)
+    } else {
+      alert(result.message || `Sync Complete! ${result.processed || 0} items updated.`)
+    }
+    fetchProducts()
+  } catch (err: any) {
+    alert("Sync failed. Check API route or network connection.")
+  } finally {
+    setSyncing(false)
+  }
+}
+
+const handleBingSync = async () => {
     setSyncing(true)
     try {
-      const res = await fetch('/api/google-index', { method: 'POST' })
+      const res = await fetch('/api/bing-index', { method: 'POST' })
       const result = await res.json()
-      alert(`Sync Complete! ${result.processed || 0} items updated.`)
+      if (!res.ok || result.error) {
+        alert(`Bing Sync Error: ${result.error || 'Check server logs'}`)
+      } else {
+        alert(result.message || `Bing Sync Complete! ${result.processed || 0} items updated.`)
+      }
       fetchProducts()
     } catch (err) {
-      alert("Sync failed. Check API route.")
+      alert("Bing Sync failed. Check API route.")
     } finally {
       setSyncing(false)
     }
@@ -221,26 +243,40 @@ export default function AdminDashboard() {
       {/* TAB 1: INVENTORY CONTENT */}
       {activeTab === "inventory" && (
         <>
-          {/* GOOGLE INDEXING CONTROL BOX */}
-          <div className="bg-slate-900 rounded-xl p-4 mb-6 flex flex-col md:flex-row justify-between items-center border border-slate-700 shadow-xl">
-            <div className="mb-4 md:mb-0">
+          {/* GOOGLE & BING INDEXING CONTROL BOX */}
+          {/* SEARCH ENGINE SYNC CONTROL BOX */}
+          <div className="bg-slate-900 rounded-xl p-4 mb-6 flex flex-col md:flex-row justify-between items-center border border-slate-700 shadow-xl gap-4">
+            <div>
               <h3 className="text-white font-bold text-sm flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                Google Search Console Sync
+                Search Engine Indexing Center
               </h3>
               <p className="text-slate-400 text-[10px] uppercase tracking-wider font-bold mt-1">
-                Pending Indexing: <span className="text-yellow-400">{pendingIndexCount} Pages</span> | API Limit: 200/day
+                Pending Google: <span className="text-yellow-400">{pendingIndexCount} Pages</span> | Google Limit: 200/day
               </p>
             </div>
-            <button 
-              onClick={handleGoogleSync}
-              disabled={syncing || pendingIndexCount === 0}
-              className={`px-8 py-2.5 rounded-lg font-black text-xs uppercase tracking-widest transition-all ${
-                syncing ? 'bg-gray-700 text-gray-400' : 'bg-white text-slate-900 hover:bg-blue-500 hover:text-white'
-              }`}
-            >
-              {syncing ? 'Processing...' : '🚀 Start Google Sync'}
-            </button>
+            
+            <div className="flex flex-wrap gap-2.5">
+              <button 
+                onClick={handleGoogleSync}
+                disabled={syncing || pendingIndexCount === 0}
+                className={`px-5 py-2.5 rounded-lg font-black text-xs uppercase tracking-widest transition-all ${
+                  syncing ? 'bg-gray-700 text-gray-400' : 'bg-white text-slate-900 hover:bg-blue-600 hover:text-white'
+                }`}
+              >
+                {syncing ? 'Syncing...' : '🚀 Google Sync'}
+              </button>
+
+              <button 
+                onClick={handleBingSync}
+                disabled={syncing}
+                className={`px-5 py-2.5 rounded-lg font-black text-xs uppercase tracking-widest transition-all ${
+                  syncing ? 'bg-gray-700 text-gray-400' : 'bg-[#00809d] text-white hover:bg-[#006880]'
+                }`}
+              >
+                {syncing ? 'Syncing...' : '⚡ Bing IndexNow'}
+              </button>
+            </div>
           </div>
 
           {/* TABLE SECTION */}

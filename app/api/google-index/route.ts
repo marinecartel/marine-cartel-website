@@ -3,13 +3,13 @@ import { createClient } from '@supabase/supabase-js'
 import { google } from 'googleapis'
 import { NextResponse } from 'next/server'
 
-// 1. Supabase Admin Client (Service Role Key use karein taaki update permission mile)
+// 1. Supabase Admin Client
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY! 
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-// 2. Google Auth Setup (Aapki JSON key ka data yahan aayega)
+// 2. Google Auth Setup
 const SCOPES = ['https://www.googleapis.com/auth/indexing'];
 
 const jwtClient = new google.auth.JWT({
@@ -20,56 +20,73 @@ const jwtClient = new google.auth.JWT({
 
 export async function POST() {
   try {
-    // 1. Database se products nikalein (ID aur Slug dono lein)
+    // Database mathi unindexed products fetch karo
     const { data: products, error } = await supabase
       .from('products')
-      .select('id, slug') // Model ki jagah slug lein agar URL mein slug hai
+      .select('id, slug')
       .eq('is_indexed', false)
-      .limit(100) // 100 products x 2 variants = 200 daily limit
+      .limit(100)
 
-    if (error || !products || products.length === 0) {
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
+    if (!products || products.length === 0) {
       return NextResponse.json({ message: "No pending products found", processed: 0 })
     }
 
     await jwtClient.authorize()
     const results = []
+    let quotaHit = false
 
     for (const product of products) {
-      // Dono variants ke URLs banayein
-      const url1 = `https://themarinecartel.com/products/${product.slug}`
-      const url2 = `https://www.themarinecartel.com/products/${product.slug}`
-      
-      const targetUrls = [url1, url2]
+      if (!product.slug) continue
+
+      // Fakht official primary canonical URL use karo
+      const targetUrl = `https://themarinecartel.com/products/${product.slug}`
 
       try {
-        for (const targetUrl of targetUrls) {
-          await google.indexing('v3').urlNotifications.publish({
-            auth: jwtClient,
-            requestBody: {
-              url: targetUrl,
-              type: 'URL_UPDATED'
-            }
-          })
-        }
-        
-        // Dono variants submit hone ke baad hi database update karein
+        await google.indexing('v3').urlNotifications.publish({
+          auth: jwtClient,
+          requestBody: {
+            url: targetUrl,
+            type: 'URL_UPDATED'
+          }
+        })
+
+        // Success thay etle tarat database ma update kari do
         await supabase
           .from('products')
           .update({ is_indexed: true, last_indexed_at: new Date().toISOString() })
           .eq('id', product.id)
-          
+
         results.push(product.id)
       } catch (e: any) {
-        console.error(`Error indexing:`, e.message)
+        console.error(`Error indexing ${targetUrl}:`, e.message)
+        
+        // Jo quota exceed thay to aagal loop na chalaavo
+        if (e.message?.includes('Quota exceeded') || e.code === 429) {
+          quotaHit = true
+          break
+        }
       }
     }
 
+    if (quotaHit) {
+      return NextResponse.json({
+        message: `Google Daily Quota Reached! Successfully processed ${results.length} items before limit.`,
+        processed: results.length,
+        quotaExceeded: true
+      })
+    }
+
     return NextResponse.json({ 
-      message: "Sync Successful for both variants", 
+      message: "Sync Successful", 
       processed: results.length 
     })
 
   } catch (error: any) {
+    console.error("Critical Google Index Route Error:", error.message)
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
